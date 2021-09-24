@@ -6,7 +6,7 @@ from src.Constants import  Constants
 class Snake(object):
     #body_list = []  # lista di cube
 
-    def __init__(self, color, key_list): #left, right, down, up
+    def __init__(self, color, key_dict): #left, right, down, up
         self.color = color
         # pos: head position
         pos = (random.randrange(Constants.ROWS) * Constants.SIZE_CUBE, random.randrange(Constants.ROWS) * Constants.SIZE_CUBE)
@@ -15,10 +15,10 @@ class Snake(object):
         self.body_list = [self.head]  #add head (which is a cube object)
         # Dictionary that stores tuple about point of rotations
         self.turns = {}
-        self.left = key_list[0]
-        self.down = key_list[2]
-        self.right = key_list[1]
-        self.up = key_list[3]
+        self.left = key_dict["LEFT"]
+        self.down = key_dict["DOWN"]
+        self.right = key_dict["RIGHT"]
+        self.up = key_dict["UP"]
 
     def get_direction(self):
         rndm = randint(0, 3)
