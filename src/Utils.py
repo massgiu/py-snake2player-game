@@ -1,5 +1,5 @@
 import pygame
-import random
+import random, sys
 import tkinter as tk
 from tkinter import messagebox
 
@@ -73,8 +73,39 @@ class Utils(object):
     @classmethod
     def you_lost(cls, snake_list):
         for snake in snake_list:
-            print(f'Snake {snake.color} score is: {len(snake.body_list)}')
+            print(f'Snake {snake.color} score is: {len(snake.body_list)-1}')
         Utils.message_box('You Lost!', 'Play again...')
-        for snake in snake_list:
-            snake.__init__(snake.color)
+        #for snake in snake_list:
+        #    snake.__init__(snake.color)
+        snake_list[0].__init__(snake_list[0].color, Constants.KEY_LIST1)
+        # key_list2 = [pygame.K_a, pygame.K_d, pygame.K_s, pygame.K_w]
+        snake_list[1].__init__(snake_list[1].color, Constants.KEY_LIST2)
         pygame.display.update()
+
+    @classmethod
+    def which_snake(cls, snake_list):
+        # Gestore di eventi: intercetto eventi tastiera
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            keys = pygame.key.get_pressed()
+            for snake in snake_list:
+                #se premo a sx and la direz non è dx e la lunghez >1 oppure se premo a sx e la lunghezza è 1
+                if (keys[snake.left] and snake.direction != "RIGHT" and len(snake.body_list) > 1) or (
+                        keys[snake.left] and len(snake.body_list) == 1):
+                    snake.direction = "LEFT"
+                elif (keys[snake.right] and snake.direction != "LEFT" and len(snake.body_list) > 1) or (
+                                keys[snake.right] and len(snake.body_list) == 1):
+                    snake.direction = "RIGHT"
+                elif (keys[snake.up] and snake.direction != "DOWN" and len(snake.body_list) > 1) or (
+                                keys[snake.up] and len(snake.body_list) == 1):
+                    snake.direction = "UP"
+                elif (keys[snake.down] and snake.direction != "UP" and len(snake.body_list) > 1) or (
+                                keys[snake.down] and len(snake.body_list) == 1):
+                    snake.direction = "DOWN"
+                # All'atto della rotazione devo memorizzare la direzione
+                # Come chiave la posizione della testa, come valore la direzione
+                snake.turns[snake.head.pos[:]] = snake.direction
+        for snake in snake_list:
+            snake.move()

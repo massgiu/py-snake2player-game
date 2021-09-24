@@ -1,3 +1,5 @@
+import pygame
+
 class Constants:
 
     ROWS = 30
@@ -8,3 +10,5 @@ class Constants:
     YELLOW = 255, 255, 0
     COOKIE_COLOR = 0, 255, 0
     BLACK = 0, 0, 0
+    KEY_LIST1 = [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_DOWN, pygame.K_UP]
+    KEY_LIST2 = [pygame.K_a, pygame.K_d, pygame.K_s, pygame.K_w]
