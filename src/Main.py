@@ -11,9 +11,9 @@ def main():
     pygame.display.set_caption("Snake Game with 2 player")
 
     #key_list1 = [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_DOWN, pygame.K_UP]
-    snake1 = Snake(Constants.RED, Constants.KEY_LIST1)
+    snake1 = Snake(Constants.RED, Constants.KEY_DICT1)
     #key_list2 = [pygame.K_a, pygame.K_d, pygame.K_s, pygame.K_w]
-    snake2 = Snake(Constants.YELLOW, Constants.KEY_LIST2)
+    snake2 = Snake(Constants.YELLOW, Constants.KEY_DICT2)
     snake_list = [snake1, snake2]
     cookie = Cookie(snake1)
     flag = True
