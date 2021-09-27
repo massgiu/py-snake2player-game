@@ -21,12 +21,6 @@ def main():
     while flag:
         # pause the program for an amount of time
         pygame.time.delay(90)
-        # clock.tick(60) # Now your game will be capped at FPS fps
-        # for event in pygame.event.get():
-        #     if event.type == pygame.QUIT:
-        #         pygame.quit()
-        #         sys.exit()
-        #     keys = pygame.key.get_pressed()
         Utils.which_snake(snake_list)
         Utils.check_crossing(snake_list, cookie)
         Utils.redraw_window(win, Constants.ROWS, Constants.WIDTH, snake_list, cookie)

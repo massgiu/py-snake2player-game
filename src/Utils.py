@@ -70,20 +70,20 @@ class Utils(object):
                     cookie.__init__(snake)# creates a new cube object
 
 
-    @classmethod
-    def you_lost(cls, snake_list):
+    @staticmethod
+    def you_lost(snake_list):
         for snake in snake_list:
             print(f'Snake {snake.color} score is: {len(snake.body_list)-1}')
         Utils.message_box('You Lost!', 'Play again...')
         #for snake in snake_list:
         #    snake.__init__(snake.color)
-        snake_list[0].__init__(snake_list[0].color, Constants.KEY_LIST1)
+        snake_list[0].__init__(snake_list[0].color, Constants.KEY_DICT1)
         # key_list2 = [pygame.K_a, pygame.K_d, pygame.K_s, pygame.K_w]
-        snake_list[1].__init__(snake_list[1].color, Constants.KEY_LIST2)
+        snake_list[1].__init__(snake_list[1].color, Constants.KEY_DICT2)
         pygame.display.update()
 
-    @classmethod
-    def which_snake(cls, snake_list):
+    @staticmethod
+    def which_snake(snake_list):
         # Gestore di eventi: intercetto eventi tastiera
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
